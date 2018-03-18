@@ -106,20 +106,29 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 
 
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
 
 
 
-</script><tw-passagedata pid="1" name="Introduction" tags="" position="409,203">-the plane crashes and the survivors all gather (about 30 of them)
+
+
+</script><tw-passagedata pid="1" name="Introduction" tags="" position="428,190">-the plane crashes and the survivors all gather (about 30 of them)
 - they find a [[book fragement|The grove]] that talks about a mysterious grove and how previous people had settled there and soon found themselves surrounded by a sort of darkness 
 		-also explains how the grove seemed like a haven; protected on all sides by a river that split and then reconverged, light tree coverage
 		
 you can choose whether to [[explore the grove|Enter Grove]] or [[set up camp where your plane crashed|Crash Site]]
 
-</tw-passagedata><tw-passagedata pid="2" name="The grove" tags="" position="1023,11">The grove is a village settled by people who came here a while ago.  They built houses in the grove they found, but darkness soon enveloped the island.  People began killing themselves and slowly destroyed the colony.  The book blames this on an evil diety that lived in the grove.
+</tw-passagedata><tw-passagedata pid="2" name="The grove" tags="" position="1019,10">&lt;&lt;set $groveLoreFound to true&gt;&gt;
 
-[[Return|Introduction]]</tw-passagedata><tw-passagedata pid="3" name="Enter Grove" tags="" position="415,343">&lt;&lt;set $Jacob to true&gt;&gt;
+The grove is a village settled by people who came here a while ago.  They built houses in the grove they found, but darkness soon enveloped the island.  People began killing themselves and slowly destroyed the colony.  The book blames this on an evil diety that lived in the grove.
+
+Added to your journal.
+
+[[Back|previous()]]</tw-passagedata><tw-passagedata pid="3" name="Enter Grove" tags="" position="415,343">&lt;&lt;set $Jacob to true&gt;&gt;
 &lt;&lt;set $mode to &quot;grove&quot;&gt;&gt;
+&lt;&lt;set $campLocation to &quot;grove&quot;&gt;&gt;
 
 [[Mia|Mia]] and [[Daniel]] emerge as leaders as the group, leading the trip to the grove.
 
@@ -130,27 +139,40 @@ You can choose to [[trust him|Trust Jacob]] or not trust him and [[go back to th
 
 
 
-</tw-passagedata><tw-passagedata pid="4" name="Crash Site" tags="" position="177,403">&lt;&lt;set $mode to &quot;crash&quot;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="4" name="Crash Site" tags="" position="229,481">&lt;&lt;set $mode to &quot;crash&quot;&gt;&gt;
+&lt;&lt;set $campLocation to &quot;crash&quot;&gt;&gt;
 
 all survivors pitch in to build shelter and count whatever food/water is left from the plane crash.  [[Mia|Mia]] and [[Daniel]] emerge as leaders as the group.
 
+&lt;&lt;nobr&gt;&gt;
 &lt;&lt;set $trustJacob to false&gt;&gt;
-You switch to [[survival mode|Survival Mode Crash Site]].
-[[Survival]]
 &lt;&lt;set $survivalTrigger to 7&gt;&gt;
-</tw-passagedata><tw-passagedata pid="5" name="Trust Jacob" tags="" position="803,363">&lt;&lt;set $trustJacob to true&gt;&gt;
-&lt;&lt;set $house to true&gt;&gt;
+[[Daily life becomes a struggle to survive on the island|Survival]]
+&lt;&lt;/nobr&gt;&gt;
 
+</tw-passagedata><tw-passagedata pid="5" name="Trust Jacob" tags="" position="790,487">&lt;&lt;set $trustJacob to true&gt;&gt;
+&lt;&lt;set $house to true&gt;&gt;
+&lt;&lt;set $campLocation to &quot;jacob&quot;&gt;&gt;
+&lt;&lt;set $numFood to $numFood + 20&gt;&gt;
+&lt;&lt;set $numWater to $numWater + 20&gt;&gt;
 
 You follow Jacob to his house and meet his family, who have survived here for 20 years.  He gives you some food and shows you where to find water and set up camp nearby in a safe area.  He offers whatever protection he can provide.
 
 
-
-You can set up camp [[near Jacob&#x27;s|Survival Mode Jacob]] or still not trust him and set up [[back at the crash site|Survival Mode Crash Site]]</tw-passagedata><tw-passagedata pid="6" name="Grove Camp" tags="" position="417,486">&lt;&lt;set $trustJacob to false&gt;&gt;
+&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $survivalTrigger to 20&gt;&gt;
+[[You set up camp near Jacob&#x27;s|Survival]]
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Grove Camp" tags="" position="429,474">&lt;&lt;set $trustJacob to false&gt;&gt;
 &lt;&lt;set $mode to &quot;grove&quot;&gt;&gt;
+&lt;&lt;set $campLocation to &quot;grove&quot;&gt;&gt;
 
 
-Everyone carries all the food and water from the plane to the grove and works to build shelters.  You enter [[Survival Mode Grove]].</tw-passagedata><tw-passagedata pid="7" name="Mia" tags="" position="48,245">Mia is in her early 30s and has dark brunette hair, cut into a short bob cut.  her eyes are blue.  
+Everyone carries all the food and water from the plane to the grove and works to build shelters.
+
+&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $survivalTrigger to 15&gt;&gt;
+[[Daily life becomes a struggle to survive on the island|Survival]]
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="Mia" tags="" position="48,245">Mia is in her early 30s and has dark brunette hair, cut into a short bob cut.  her eyes are blue.  
 
 She is actually the grove Diety and is trying to help them.  In Aztec culture, she was the goddess of rivers, seas, streams, storms and was represented as a river converging on a prickly pear tree full of fruits.  The fruits were meant to represent hearts that were sacrificed to her.
 
@@ -162,13 +184,13 @@ She is actually the grove Diety and is trying to help them.  In Aztec culture, s
 
 &lt;&lt;if $mode is &quot;crash&quot;&gt;&gt; [[Return|Crash Site]]
 &lt;&lt;elseif $mode is &quot;grove&quot;&gt;&gt; [[Return|Enter Grove]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Survival Mode Crash Site" tags="" position="206,558">&lt;&lt;set $mode to &quot;crash&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Survival Mode Crash Site" tags="" position="329,698">/* NOT IN USE */
+&lt;&lt;set $mode to &quot;crash&quot;&gt;&gt;
+&lt;&lt;set $campLocation to &quot;crash&quot;&gt;&gt;
 
 This survival mode lasts until there are 7 or less survivors.  You can choose to send people out to get food or water.
 
-&lt;&lt;set $journey to false&gt;&gt;
 &lt;&lt;if $journey is false&gt;&gt; You can also [[travel|Journey Scene]] out on your own once.
-&lt;&lt;set $journey to true&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 As you send people to get supplies, they will slowly disappear and your survivor count will decrease.  
@@ -177,57 +199,57 @@ People will also bring back book fragments that they find on shrines.  These fra
 
 &lt;&lt;if $Jacob is true&gt;&gt;
 Jacob shows up and brings someone back, trying to gain your trust.  He claims to have found them in the woods.  You, again, can choose to [[trust him|Trust Jacob]] or [[not|End of Crash]].
-&lt;&lt;elseif $Jacob is false&gt;&gt; A man named Jacob appears and brings a person back.  he says he has been living on the island for a while and can help them.  You can choose to [[trust him|Survival Mode Jacob]] or [[not|End of Crash]].
+&lt;&lt;elseif $Jacob is false&gt;&gt; A man named Jacob appears and brings a person back.  he says he has been living on the island for a while and can help them.  You can choose to [[trust him|Trust Jacob]] or [[not|End of Crash]].
 &lt;&lt;/if&gt;&gt;
 
-</tw-passagedata><tw-passagedata pid="10" name="Journey Scene" tags="" position="34,575">This is just a scene that adds to the characterization of Daniel and Mia, as well as gives a better scene to the island.  They find a shrine, start to actually believe the diety nonsense.
+</tw-passagedata><tw-passagedata pid="10" name="Journey Scene" tags="" position="33,574">&lt;&lt;set $journey to true&gt;&gt;
+This is just a scene that adds to the characterization of Daniel and Mia, as well as gives a better scene to the island.  They find a shrine, start to actually believe the diety nonsense.
 
-&lt;&lt;if $mode is &quot;crash&quot;&gt;&gt;  Now return to [[camp|Survival Mode Crash Site]].
-&lt;&lt;elseif $mode if &quot;grove&gt;&gt; Return to the [[grove|Survival Mode Grove]].
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="Gods V Dieties" tags="" position="1023,119">Most gods are dead since they did not adjust to the change in religion sweeping the world.  
+[[Head back to camp|previous()]]</tw-passagedata><tw-passagedata pid="11" name="Gods V Dieties" tags="" position="1023,119">&lt;&lt;set $godsVDietiesLoreFound to true&gt;&gt;
+
+Most gods are dead since they did not adjust to the change in religion sweeping the world.  
 
 Gods can change between many forms while dieties can only change to one form.
 
 The grove diety is one of the few Gods on the island.  She can change between human form, serpent form, and water goddess form.
 
+Added to your journal.
 
-&lt;&lt;if $mode is &quot;crash&quot;&gt;&gt;  Now return to [[camp|Survival Mode Crash Site]].
-&lt;&lt;elseif $mode is &quot;grove&quot;&gt;&gt;  Now return to [[camp|Survival Mode Grove]].
-&lt;&lt;elseif $mode is &quot;jacob&quot;&gt;&gt;  Now return to [[camp|Survival Mode Jacob]].
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Testing a Diety" tags="" position="1131,11">To test if someone is a diety, you need to cut their hand and run it under water.  If the blood turns purple and the wound heals, they are a diety.
+[[Turn your attention back to the camp|Survival]]</tw-passagedata><tw-passagedata pid="12" name="Testing a Diety" tags="" position="1131,11">&lt;&lt;set $testingDietyLoreFound to true&gt;&gt;
 
+To test if someone is a diety, you need to cut their hand and run it under water.  If the blood turns purple and the wound heals, they are a diety.
 
-&lt;&lt;if $mode is &quot;crash&quot;&gt;&gt;  Now return to [[camp|Survival Mode Crash Site]].
-&lt;&lt;elseif $mode is &quot;grove&quot;&gt;&gt;  Now return to [[camp|Survival Mode Grove]].
-&lt;&lt;elseif $mode is &quot;jacob&quot;&gt;&gt;  Now return to [[camp|Survival Mode Jacob]].
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="The Grove God" tags="" position="1129,120">When the settlers lived in the grove, they formed a religious cult around the Grove diety.  
+Added to your journal.
+
+[[Turn your attention back to the camp|Survival]]</tw-passagedata><tw-passagedata pid="13" name="The Grove God" tags="" position="1129,120">&lt;&lt;set $groveGodLoreFound to true&gt;&gt;
+
+When the settlers lived in the grove, they formed a religious cult around the Grove diety.  
 
 These passengers soon devolved into maddess and it was discovered that had contracted a disease making them this way.  The diety tried to help them but after they started killing eachother, she had to kill them all.  Only one girl was not sick, Kila, and the grove diety took her in.  Kila wrote all of these passages in the book.
 
+Added to your journal.
 
+[[Turn your attention back to the camp|Survival]]</tw-passagedata><tw-passagedata pid="14" name="The Island" tags="" position="1236,119">&lt;&lt;set $islandLoreFound to false&gt;&gt;
 
-&lt;&lt;if $mode is &quot;crash&quot;&gt;&gt;  Now return to [[camp|Survival Mode Crash Site]].
-&lt;&lt;elseif $mode is &quot;grove&quot;&gt;&gt;  Now return to [[camp|Survival Mode Grove]].
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="The Island" tags="" position="1236,119">this is an explanation of why the dieties all ended up on this isalnd.  The started being persecuted as large religions grew.  Some were accused of being witches and they needed to hide.  The island was opened as a safe haven for dieties and once everyone who was going to come, came, the island was blocked off from the rest of the world.
+this is an explanation of why the dieties all ended up on this isalnd.  The started being persecuted as large religions grew.  Some were accused of being witches and they needed to hide.  The island was opened as a safe haven for dieties and once everyone who was going to come, came, the island was blocked off from the rest of the world.
 
+Added to your journal.
 
-&lt;&lt;if $mode is &quot;crash&quot;&gt;&gt;  Now return to [[camp|Survival Mode Crash Site]].
-
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="End of Crash" tags="" position="177,703">Once survivors &lt;= 7, the camp becomes surrounded by dieties.  Mia suggests running to the grove because maybe these dieties will be afraid of that one. The group either decides to [[run to the grove|Grove Ending]] or [[take their chances|Crash Ending]].</tw-passagedata><tw-passagedata pid="16" name="Grove Ending" tags="" position="380,837">The camp runs to the grove.  They lose several people en route and the group ends up seperated, including Daniel and Mia.
+[[Turn your attention back to the camp|Survival]]</tw-passagedata><tw-passagedata pid="15" name="End of Crash" tags="" position="215,875">Once survivors &lt;= 7, the camp becomes surrounded by dieties.  Mia suggests running to the grove because maybe these dieties will be afraid of that one. The group either decides to [[run to the grove|Grove Ending]] or [[take their chances|Crash Ending]].</tw-passagedata><tw-passagedata pid="16" name="Grove Ending" tags="" position="437,1000">The camp runs to the grove.  They lose several people en route and the group ends up seperated, including Daniel and Mia.
 
 Once a few people have arrived at the grove, the dieties stop chasing them.  Daniel sees a large serpent pacing the outside of the grove, through the river.  it hisses at the other dieties, chasing them away.  Once those dieties are gone, the serpent turns to the survivors and transforms into this glowing woman with water rushing all over her, almost acting like clothes.  She soon completely turns to water and falls into the river.
 
 Mia and a couple other survivors arrive and the group begins to argue about what to do.
 
-They can choose to [[leave|Grove Dead]] and take their chances in the woods again or [[Stay|Stay in Grove]] and take their chances with the Grove Diety.</tw-passagedata><tw-passagedata pid="17" name="Crash Ending" tags="" position="34,855">The group stayed and they were all eaten by the hungry dieties.  With no one to protect them, they had no chance.
+They can choose to [[leave|Grove Dead]] and take their chances in the woods again or [[Stay|Stay in Grove]] and take their chances with the Grove Diety.</tw-passagedata><tw-passagedata pid="17" name="Crash Ending" tags="" position="38,1018">The group stayed and they were all eaten by the hungry dieties.  With no one to protect them, they had no chance.
 
 Game Over.
 
 
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="18" name="Grove Dead" tags="" position="333,1013">After the group heads out into the woods, the dieties soon catch up to them all and they eat them all.
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="18" name="Grove Dead" tags="" position="327,1176">After the group heads out into the woods, the dieties soon catch up to them all and they eat them all.
 
 
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="19" name="Stay in Grove" tags="" position="547,997">A book fragment flies out of the village.  Mia pick it up and [[reads it|The Grove Diety]].  It explains how the grove diety hid amongst the settlers at first.
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="19" name="Stay in Grove" tags="" position="551,1160">A book fragment flies out of the village.  Mia pick it up and [[reads it|The Grove Diety]].  It explains how the grove diety hid amongst the settlers at first.
 
 Someone suggests that they test everyone to see if thy are a diety, since they found a fragment of a book that explained how.  it might not be true, but it was worth a shot.
 
@@ -235,36 +257,39 @@ When it comes Mia&#x27;s turn to be tested, she cuts her hand and the bleeding t
 
 Mia starts to plead for the survivors to trust her while Jacob tries to convince you of how evil she is.
 
-You can choose to [[trust Mia|Mia Grove End]] or [[trust Jacob|Jacob Grove End]].</tw-passagedata><tw-passagedata pid="20" name="The Grove Diety" tags="" position="1129,225">The grove diety initially disguised herself amongst the passengers in order to gain their trust.   
+You can choose to [[trust Mia|Mia Grove End]] or [[trust Jacob|Jacob Grove End]].</tw-passagedata><tw-passagedata pid="20" name="The Grove Diety" tags="" position="1126,231">&lt;&lt;set $groveDietyLoreFound to false&gt;&gt;
 
-&lt;&lt;if $mode is &quot;crash&quot;&gt;&gt;  Now return to [[camp|Stay in Grove]].
-&lt;&lt;elseif $mode is &quot;grove&quot;&gt;&gt;  Now return to [[camp|Stay in Grove]].
-&lt;&lt;elseif $mode is &quot;jacob&quot;&gt;&gt;  Now return to [[camp|Stay in Camp]].
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="Mia Grove End" tags="" position="437,1148">Daniel knocks the shotgun from Jacob&#x27;s hand and points it at him.  
+The grove diety initially disguised herself amongst the passengers in order to gain their trust.   
 
-You can choose to [[shoot him|Shoot Jacob]] or [[not|Jacob Alive]].</tw-passagedata><tw-passagedata pid="22" name="Jacob Grove End" tags="" position="697,1147">Jacob shoots Mia once you nod at him.  he tells the survivors that they only have a little bit of time before she wakes up so they must burn her.  They take and tie her to one of the crosses in the settlement, where the settlers had burned others.  
+Added to your journal.
 
-You can either [[light the match|Mia Death]] or [[walk away|Mia Death]] and have Jacob do it.</tw-passagedata><tw-passagedata pid="23" name="Shoot Jacob" tags="" position="362,1298">Jacob falls to the ground dead and Mia thanks Daniel for trusting her.  She then has the people drag Jacob outside of the grove and she casts a spell to keep him out, since he won&#x27;t die from a gunshot.  
+[[Back|previous()]]</tw-passagedata><tw-passagedata pid="21" name="Mia Grove End" tags="" position="402,1311">Daniel knocks the shotgun from Jacob&#x27;s hand and points it at him.  
 
-Mia then explains herself and how she was trying to protect them from him.  She then says she doesn&#x27;t have enough power to get them off the island on her own; she needed &#x27;Q&#x27; or Quetzalcoatl, to help her, but he wasn&#x27;t willing to let his food source go.  
+You can choose to [[shoot him|Shoot Jacob]] or [[not|Jacob Alive]].</tw-passagedata><tw-passagedata pid="22" name="Jacob Grove End" tags="" position="587,1310">Jacob shoots Mia once you nod at him.  he tells the survivors that they only have a little bit of time before she wakes up so they must burn her.  They take and tie her to one of the crosses in the settlement, where the settlers had burned others.  
 
-Now, they must live on the island forever, but they do survive.
-
-
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="24" name="Jacob Alive" tags="" position="512,1298">Jacob makes one last plea, but leaves, telling Mia she better do what is best for her people.  
+You can either [[light the match|Mia Death]] or [[walk away|Mia Death]] and have Jacob do it.</tw-passagedata><tw-passagedata pid="23" name="Shoot Jacob" tags="" position="366,1461">Jacob falls to the ground dead and Mia thanks Daniel for trusting her.  She then has the people drag Jacob outside of the grove and she casts a spell to keep him out, since he won&#x27;t die from a gunshot.  
 
 Mia then explains herself and how she was trying to protect them from him.  She then says she doesn&#x27;t have enough power to get them off the island on her own; she needed &#x27;Q&#x27; or Quetzalcoatl, to help her, but he wasn&#x27;t willing to let his food source go.  
 
 Now, they must live on the island forever, but they do survive.
 
 
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="25" name="Mia Death" tags="" position="697,1297">As Mia truely dies, the entire grove starts to die.  Wailing is heard in the distance as those who followed her felt her spirit die.  
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="24" name="Jacob Alive" tags="" position="516,1461">Jacob makes one last plea, but leaves, telling Mia she better do what is best for her people.  
+
+Mia then explains herself and how she was trying to protect them from him.  She then says she doesn&#x27;t have enough power to get them off the island on her own; she needed &#x27;Q&#x27; or Quetzalcoatl, to help her, but he wasn&#x27;t willing to let his food source go.  
+
+Now, they must live on the island forever, but they do survive.
+
+
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="25" name="Mia Death" tags="" position="701,1460">As Mia truely dies, the entire grove starts to die.  Wailing is heard in the distance as those who followed her felt her spirit die.  
 
 A trap door appears in the middle of the grove and Jacob smiles at it.  You turn to look at it closer and feel something slam on the back of your head before you black out.  
 
 When you wake up, you&#x27;re surrounded by darkness and your head is foggy.  Jacob has trapped you and intends to regrow his food supply.  
 
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="26" name="Survival Mode Jacob" tags="" position="992,544">&lt;&lt;set $mode to &quot;jacob&quot;&gt;&gt;
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="26" name="Survival Mode Jacob" tags="" position="1024,698">/* NOT IN USE */
+&lt;&lt;set $mode to &quot;jacob&quot;&gt;&gt;
+&lt;&lt;set $campLocation to &quot;jacob&quot;&gt;&gt;
 
 This survival mode lasts until there are 20 or less survivors.  You can choose to send people out to get food or water.
 
@@ -278,7 +303,8 @@ As you send people to get supplies, they will slowly disappear and your survivor
 People will also bring back book fragments that they find on shrines.  These fragments were all written by a girl named Kila, who was one of the members of the settlement.  The fragmens that come to you in this mode are [[Gods V Dieties]], [[Testing a Diety]], and [[Cullings]].
 
 
-This will end eventually.  Go to [[end|Jacob Mode End]].</tw-passagedata><tw-passagedata pid="27" name="Survival Mode Grove" tags="" position="417,637">&lt;&lt;set $explore to false&gt;&gt;
+This will end eventually.  Go to [[end|Jacob Mode End]].</tw-passagedata><tw-passagedata pid="27" name="Survival Mode Grove" tags="" position="466,700">/* NOT IN USE */
+&lt;&lt;set $explore to false&gt;&gt;
 &lt;&lt;set $journey to false&gt;&gt;
 
 
@@ -286,31 +312,35 @@ This mode lasts until there are less than 15 survivors.  You can send people out
 
 People will also bring back book fragments that they find on shrines.  These fragments were all written by a girl named Kila, who was one of the members of the settlement.  The fragmens that come to you in this mode are [[Gods V Dieties]], [[Testing a Diety]], and [[The Grove God]].
 
-Eventually, this scene will [[end|Grove Mode End]]</tw-passagedata><tw-passagedata pid="28" name="explore" tags="" position="151,1014">They explore the settlement and find another [[book fragment|Settlement]].</tw-passagedata><tw-passagedata pid="29" name="Grove Mode End" tags="" position="537,787">Mia goes to get water and doesn&#x27;t come back quickly, so Daniel goes to look for her.  Instead of finding her, he sees a serpent hissing at the woods. The serpent turns to him and transforms into this glowing woman with water rushing all over her, almost acting like clothes.  She soon completely turns to water and falls into the river.
+Eventually, this scene will [[end|Grove Mode End]]</tw-passagedata><tw-passagedata pid="28" name="explore" tags="" position="155,1177">They explore the settlement and find another [[book fragment|Settlement]].</tw-passagedata><tw-passagedata pid="29" name="Grove Mode End" tags="" position="607,876">Mia goes to get water and doesn&#x27;t come back quickly, so Daniel goes to look for her.  Instead of finding her, he sees a serpent hissing at the woods. The serpent turns to him and transforms into this glowing woman with water rushing all over her, almost acting like clothes.  She soon completely turns to water and falls into the river.
 
 Daniel goes back into the camp where he finds Mia and they tell the group what happened.  The group then begins to argue about what to do.
 
-They can choose to [[leave|Grove Dead]] and take their chances in the woods again or [[Stay|Stay in Grove]] and take their chances with the Grove Diety.</tw-passagedata><tw-passagedata pid="30" name="Settlement" tags="" position="1240,10">The settlers arrived on this island by accident, when their boat was thrown off course to the new world by a storm.  
+They can choose to [[leave|Grove Dead]] and take their chances in the woods again or [[Stay|Stay in Grove]] and take their chances with the Grove Diety.</tw-passagedata><tw-passagedata pid="30" name="Settlement" tags="" position="1240,10">&lt;&lt;set $settlementLoreFound to true&gt;&gt;
+
+The settlers arrived on this island by accident, when their boat was thrown off course to the new world by a storm.  
 
 This will explain their religion/maddness more.
 
+Added to your journal.
 
-&lt;&lt;if $mode is &quot;grove&quot;&gt;&gt;  Now return to [[camp|Survival Mode Grove]].</tw-passagedata><tw-passagedata pid="31" name="Cullings" tags="" position="1354,60">The dieties used to rely on sacrifices to get food.  Once these stopped, they slowly started to cull society by taking only the weakest.  They used magic to dull their intelligence and sensation and created a livestock sub-species of humans to consume.  Evolution kicked in and the cullings kept devolving and by their end, where just human enough for the dieties to survive.
+[[Turn your attention back to the camp|Survival]]</tw-passagedata><tw-passagedata pid="31" name="Cullings" tags="" position="1354,60">The dieties used to rely on sacrifices to get food.  Once these stopped, they slowly started to cull society by taking only the weakest.  They used magic to dull their intelligence and sensation and created a livestock sub-species of humans to consume.  Evolution kicked in and the cullings kept devolving and by their end, where just human enough for the dieties to survive.
 
 They were mass produced on the island like cattle until they were wiped out by a plague, forcing everyone into hibernation until more food arrived. 
 
+Added to your journal.
 
-Now return to [[camp|Survival Mode Jacob]].</tw-passagedata><tw-passagedata pid="32" name="Jacob Mode End" tags="" position="992,694">Mia goes to get water and doesn&#x27;t come back quickly, so Daniel goes to look for her.  Instead of finding her, he sees a serpent hissing at the woods. The serpent turns to him and transforms into this glowing woman with water rushing all over her, almost acting like clothes.  She soon completely turns to water and falls into the river.
+[[Turn your attention back to the camp|Survival]]</tw-passagedata><tw-passagedata pid="32" name="Jacob Mode End" tags="" position="979,892">Mia goes to get water and doesn&#x27;t come back quickly, so Daniel goes to look for her.  Instead of finding her, he sees a serpent hissing at the woods. The serpent turns to him and transforms into this glowing woman with water rushing all over her, almost acting like clothes.  She soon completely turns to water and falls into the river.
 
 Daniel goes back into the camp where he finds Mia and they tell the group what happened.  The group then begins to argue about what to do.
 
-They can choose to [[stay put|Stay in Camp]] and take their chances or [[go to Jacob|Jacob&#x27;s House]] and see what he knows.</tw-passagedata><tw-passagedata pid="33" name="Stay in Camp" tags="" position="843,821">&lt;&lt;set $spot to &quot;camp&quot;&gt;&gt;
+They can choose to [[stay put|Stay in Camp]] and take their chances or [[go to Jacob|Jacob&#x27;s House]] and see what he knows.</tw-passagedata><tw-passagedata pid="33" name="Stay in Camp" tags="" position="808,984">&lt;&lt;set $spot to &quot;camp&quot;&gt;&gt;
 
 A group out getting water brings back another [[book fragement|The Grove Diety]].  They decide to test everyone after the recent experience.  
 
 Mia goes last and as she cuts herself, Jacob appears, pointing a gun at her.  Both of them try to convince you of who to trust.
 
-You can choose to [[trust him|Trust Jacob end]] or [[trust Mia|Trust Mia Camp]].</tw-passagedata><tw-passagedata pid="34" name="Jacob&#x27;s House" tags="" position="1163,814">&lt;&lt;set $spot to &quot;house&gt;&gt;
+You can choose to [[trust him|Trust Jacob end]] or [[trust Mia|Trust Mia Camp]].</tw-passagedata><tw-passagedata pid="34" name="Jacob&#x27;s House" tags="" position="1167,977">&lt;&lt;set $spot to &quot;house&gt;&gt;
 
 The group journey&#x27;s to Jacob&#x27;s house.  Daniel tells him what they saw and Jacob explains it as the Grove diety (give her background).  Says that she might be hiding out amongst the survivors.  
 
@@ -318,19 +348,19 @@ They decide to test everyone.  Before Mia goes, she whispers to Jaco to run when
 
 Mia and Jacob go last and at the same time and both of their cuts turn purple and heal.  Mia yells run.  
 
-You [[run]], [[run but then hide so you can watch what happens|Run and Hide]], [[stay and try to fight|Stay]] or [[believe Jacob over over|Trust Jacob end]].</tw-passagedata><tw-passagedata pid="35" name="Trust Jacob end" tags="" position="841,1121">Instead of listening to Mia, you just look at her in disappoint.  Jacob smiles and shoots her, knocking her unconscious.  
+You [[run]], [[run but then hide so you can watch what happens|Run and Hide]], [[stay and try to fight|Stay]] or [[believe Jacob over over|Trust Jacob end]].</tw-passagedata><tw-passagedata pid="35" name="Trust Jacob end" tags="" position="845,1284">Instead of listening to Mia, you just look at her in disappoint.  Jacob smiles and shoots her, knocking her unconscious.  
 
 He starts to laugh and walks towards Daniel, telling him that he made the wrong choice.  Daniel tries to fight, but gets knocked unconscious.  he wakes up in total darkness, his brain far to foggy to even awknowledge where he is or how he got there.
 
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="36" name="Trust Mia Camp" tags="" position="918,971">Daniel knocks the gun out of Jacob&#x27;s hand and points it at him.  Mia lunges towards Jacob and yells at Daniel to run.
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="36" name="Trust Mia Camp" tags="" position="922,1134">Daniel knocks the gun out of Jacob&#x27;s hand and points it at him.  Mia lunges towards Jacob and yells at Daniel to run.
 
-You [[run]], [[run but then hide so you can watch what happens|Run and Hide]], [[stay and try to fight|Stay]] or [[believe Jacob over over|Trust Jacob end]].</tw-passagedata><tw-passagedata pid="37" name="run" tags="" position="1041,1120">Everyone runs to the grove and waits there until Mia arrives (covered in blood).  She leads them to the beach where a heliocopter spots them and lands, telling them that they will go get help.  
+You [[run]], [[run but then hide so you can watch what happens|Run and Hide]], [[stay and try to fight|Stay]] or [[believe Jacob over over|Trust Jacob end]].</tw-passagedata><tw-passagedata pid="37" name="run" tags="" position="1045,1283">Everyone runs to the grove and waits there until Mia arrives (covered in blood).  She leads them to the beach where a heliocopter spots them and lands, telling them that they will go get help.  
 
 Mia tells you to saty on the beach and then vanishes into the forest.  
 
 You get rescued.
 
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="38" name="Run and Hide" tags="" position="1171,1122">As everyone runs, Jacob manages to grab and break the neck of one person.
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="38" name="Run and Hide" tags="" position="1175,1285">As everyone runs, Jacob manages to grab and break the neck of one person.
 
 Daniel hides and watches from &lt;&lt;if $spot is &quot;camp&quot;&gt;&gt;behind a dense bush&lt;&lt;elseif $spot is &quot;house&quot;&gt;&gt;below a side window&lt;&lt;/if&gt;&gt;.  He sees Mia and Jacob argue.  Jacob is exposed as a great Aztec God, &#x27;Q&#x27; for short.  It gives background on their history of love affairs.
 He pulls the heart out of the person he killed and tries to convince Mia to eat it with him, to come back to him essentially.
@@ -340,7 +370,7 @@ She agrees as long as he helps get the survivors off the island.  He makes an am
 Mia agrees and eats the heart.  Daniel watches it change her back into her water woman form and &#x27;Q&#x27; into a feathered serpent, before running away to the grove to await rescue.
 
 
-[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="39" name="Stay" tags="" position="1311,1126">Jacob grabs you and tears you heart out.
+[[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="39" name="Stay" tags="" position="1315,1289">Jacob grabs you and tears you heart out.
 
 [[Start over?|Introduction]]</tw-passagedata><tw-passagedata pid="40" name="Jacob" tags="" position="256,37">-A main deity or God
 
@@ -351,31 +381,50 @@ His family are lesser dities that serve him- five people
 He appears to be in his late 20s, with dark brown eyes and clean cut hair.  he looks like someone to trust.  
 
 
-[[Return|Enter Grove]]</tw-passagedata><tw-passagedata pid="41" name="StoryInit" tags="" position="424,58">&lt;&lt;cacheaudio &quot;mainsong&quot; &quot;music/ShuffleOrBoogie.mp3&quot;&gt;&gt;
+[[Return|Enter Grove]]</tw-passagedata><tw-passagedata pid="41" name="StoryInit" tags="" position="427,58">&lt;&lt;cacheaudio &quot;mainsong&quot; &quot;sound/Waterfall.mp3&quot;&gt;&gt;
+&lt;&lt;audio &quot;mainsong&quot; volume 0.1 loop play&gt;&gt;
 
 &lt;&lt;set $numSurvivors to 30&gt;&gt;
 
+/* Chances in percentage */
 &lt;&lt;set $searchingFood to 0&gt;&gt;
 &lt;&lt;set $searchingWater to 0&gt;&gt;
 &lt;&lt;set $searchingFirewood to 0&gt;&gt;
 &lt;&lt;set $investigatingIsland to 0&gt;&gt;
-&lt;&lt;set $numFood to 0&gt;&gt;
-&lt;&lt;set $numWater to 0&gt;&gt;
-&lt;&lt;set $numFirewood to 0&gt;&gt;
-&lt;&lt;set $fiveSurviveChance to 0&gt;&gt;
-&lt;&lt;set $tenSurviveChance to 0&gt;&gt;
-&lt;&lt;set $fifteenSurviveChance to 0&gt;&gt;
-&lt;&lt;set $twentySurviveChance to 0&gt;&gt;
+&lt;&lt;set $numFood to 30 + random(1, 10) - random(1, 10)&gt;&gt;
+&lt;&lt;set $numWater to 30 + random(1, 10) - random(1, 10)&gt;&gt;
+&lt;&lt;set $numFirewood to 30 + random(1, 10) - random(1, 10)&gt;&gt;
+&lt;&lt;set $fiveSurviveChance to 20&gt;&gt;
+&lt;&lt;set $tenSurviveChance to 50&gt;&gt;
+&lt;&lt;set $fifteenSurviveChance to 80&gt;&gt;
+/* Chance to find lore is a multiplier based on how many people sent to investigate the island */
+&lt;&lt;set $loreChance to 20&gt;&gt;
+&lt;&lt;set $jacobReencounterChance to 20&gt;&gt;
 &lt;&lt;set $survivalTrigger to 0&gt;&gt;
+&lt;&lt;set $campLocation to &quot;crash&quot;&gt;&gt;
+&lt;&lt;set $loreFound to false&gt;&gt;
 
 &lt;&lt;set $planSuccess to true&gt;&gt;
 
 &lt;&lt;set $Jacob to false&gt;&gt;
-&lt;&lt;set $house to false&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="Survival" tags="" position="615,388">&lt;&lt;if visited(&quot;Survival&quot;) is 1&gt;&gt; After setting up camp, you quickly realize you don&#x27;t have enough supplies to last the group very long. You&#x27;ll have to send people out to search for food, water, and firewood. You might also want to send people out to investigate the island.
-&lt;&lt;else&gt;&gt;
-Another day dawns as the sun illuminates your rag-tag band of &lt;&lt;print $numSurvivors&gt;&gt; survivors.
-&lt;&lt;endif&gt;&gt;
+&lt;&lt;set $house to false&gt;&gt;
+&lt;&lt;set $journey to false&gt;&gt;
 
+&lt;&lt;set $groveLoreFound to false&gt;&gt;
+&lt;&lt;set $groveDietyLoreFound to false&gt;&gt;
+&lt;&lt;set $godsVDietiesLoreFound to false&gt;&gt;
+&lt;&lt;set $testingDietyLoreFound to false&gt;&gt;
+&lt;&lt;set $groveGodLoreFound to false&gt;&gt;
+&lt;&lt;set $settlementLoreFound to false&gt;&gt;
+&lt;&lt;set $islandLoreFound to false&gt;&gt;
+&lt;&lt;set $cullingsLoreFound to false&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="Survival" tags="" position="604,700">/* Basic introductory text */
+&lt;&lt;if visited(&quot;Survival&quot;) is 1&gt;&gt; After setting up camp, you quickly realize you don&#x27;t have enough supplies to last the group very long. You&#x27;ll have to send people out to search for enough food, water, and firewood for &lt;&lt;print $numSurvivors&gt;&gt; people. You might also want to send people out to investigate the island. Your surroundings seem dangerous, so you reckon it&#x27;s a good idea to send people out in groups.
+&lt;&lt;else&gt;&gt;
+/* OPTIONAL */
+The sun  your rag-tag band of &lt;&lt;print $numSurvivors&gt;&gt; survivors.
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;nobr&gt;&gt;
+/* Feedback on how much of each necessity player has */
 &lt;&lt;if $numFood &lt; $numSurvivors&gt;&gt;
 Your group won&#x27;t last another day if you don&#x27;t find more food.
 &lt;&lt;elseif $numFood == $numSurvivors&gt;&gt;
@@ -383,6 +432,8 @@ Your group has barely enough food to survive the day.
 &lt;&lt;else&gt;&gt;
 Your group has some extra food.
 &lt;&lt;endif&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
+&lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $numWater &lt; $numSurvivors&gt;&gt;
 Your group won&#x27;t last another day if you don&#x27;t find more water.
 &lt;&lt;elseif $numWater == $numSurvivors&gt;&gt;
@@ -390,6 +441,8 @@ Your group has barely enough water to survive the day.
 &lt;&lt;else&gt;&gt;
 Your group has some extra water.
 &lt;&lt;endif&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
+&lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $numFirewood &lt; $numSurvivors&gt;&gt;
 Your group won&#x27;t last another day if you don&#x27;t find more firewood.
 &lt;&lt;elseif $numFirewood == $numSurvivors&gt;&gt;
@@ -397,7 +450,15 @@ Your group has barely enough firewood to survive the day.
 &lt;&lt;else&gt;&gt;
 Your group has some extra firewood.
 &lt;&lt;endif&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
 
+&lt;&lt;nobr&gt;&gt;
+/* Journey scene connection */
+&lt;&lt;if not $journey&gt;&gt;
+You can also [[look around|Journey Scene]] on your own, but it&#x27;s dangerous, so you should only do it once.
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
+/* Input number of people per task */
 Number of people to search for food:
 &lt;&lt;textbox &quot;$searchingFood&quot; $searchingFood&gt;&gt;
 Number of people to search for water:
@@ -407,6 +468,7 @@ Number of people to search for firewood:
 Number of people to investigate the island:
 &lt;&lt;textbox &quot;$investigatingIsland&quot; $investigatingIsland&gt;&gt;
 
+/* Button to actually set the inputted values */
 &lt;&lt;button &quot;Plan&quot; &quot;Survival&quot;&gt;&gt;
 &lt;&lt;set $searchingFood to Number($searchingFood)&gt;&gt;
 &lt;&lt;set $searchingWater to Number($searchingWater)&gt;&gt;
@@ -417,37 +479,195 @@ Number of people to investigate the island:
 &lt;&lt;endif&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 
+&lt;&lt;nobr&gt;&gt;
+/* Check to make sure player has input numbers and hasn&#x27;t allocated too many survivors */
 &lt;&lt;if $searchingFood + $searchingWater + $searchingFirewood + $investigatingIsland &lt;= $numSurvivors and $planSuccess&gt;&gt;
 [[Send People|Survival Results]]
 &lt;&lt;else&gt;&gt;
 You&#x27;ve allocated more people than you have, or you&#x27;ve entered a number incorrectly.
 &lt;&lt;endif&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
 
-</tw-passagedata><tw-passagedata pid="43" name="StoryCaption" tags="" position="575,56">[[Journal|Compiled Lore]]</tw-passagedata><tw-passagedata pid="44" name="Compiled Lore" tags="" position="847,27">&lt;&lt;if visited(&quot;The grove&quot;)&gt;&gt;
-Copy The grove lore here
+</tw-passagedata><tw-passagedata pid="43" name="StoryCaption" tags="" position="575,57">[[Journal|Journal]]
+[[Map|Map Screen]]</tw-passagedata><tw-passagedata pid="44" name="Journal" tags="" position="791,29">/* TODO */
+/* DO NOT LINK TO THE LORE PASSAGES OR THE BACK BUTTON WILL NOT WORK */
+&lt;&lt;if $groveLoreFound&gt;&gt;
+Copy Grove lore here
 &lt;&lt;endif&gt;&gt;
-&lt;&lt;if visited(&quot;The Grove Diety&quot;)&gt;&gt;
-Copy The Grove Diety lore here
+&lt;&lt;if $groveDietyLoreFound&gt;&gt;
+Copy Grove Diety lore here
 &lt;&lt;endif&gt;&gt;
-&lt;&lt;if visited(&quot;Gods V Dieties&quot;)&gt;&gt;
+&lt;&lt;if $godsVDietiesLoreFound&gt;&gt;
 Copy Gods V Dieties lore here
 &lt;&lt;endif&gt;&gt;
-&lt;&lt;if visited(&quot;Testing a Diety&quot;)&gt;&gt;
+&lt;&lt;if $testingDietyLoreFound&gt;&gt;
 Copy Testing a Diety lore here
 &lt;&lt;endif&gt;&gt;
-&lt;&lt;if visited(&quot;The Grove God&quot;)&gt;&gt;
-Copy The Grove God lore here
+&lt;&lt;if $groveGodLoreFound&gt;&gt;
+Copy Grove God lore here
 &lt;&lt;endif&gt;&gt;
-&lt;&lt;if visited(&quot;Settlement&quot;)&gt;&gt;
+&lt;&lt;if $settlementLoreFound&gt;&gt;
 Copy Settlement lore here
 &lt;&lt;endif&gt;&gt;
-&lt;&lt;if visited(&quot;The Island&quot;)&gt;&gt;
-Copy The Island lore here
+&lt;&lt;if $islandLoreFound&gt;&gt;
+Copy Island lore here
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;if $cullingsLoreFound&gt;&gt;
+Copy Island lore here
 &lt;&lt;endif&gt;&gt;
 
-[[Back|previous()]]</tw-passagedata><tw-passagedata pid="45" name="Survival Results" tags="" position="644,540">&lt;&lt;print $searchingFood&gt;&gt;
+[[Back|previous()]]</tw-passagedata><tw-passagedata pid="45" name="Survival Results" tags="" position="737,700">&lt;&lt;nobr&gt;&gt;
+/* Calculate gains from tasks */
+&lt;&lt;set $tempFood to $searchingFood*2 + random(0, $searchingFood)&gt;&gt;
+&lt;&lt;set $tempWater to $searchingWater*2 + random(0, $searchingWater)&gt;&gt;
+&lt;&lt;set $tempFirewood to $searchingFirewood*2 + random(0, $searchingFirewood)&gt;&gt;
+&lt;&lt;set $numFood to $numFood + $tempFood&gt;&gt;
+&lt;&lt;set $numWater to $numWater + $tempWater&gt;&gt;
+&lt;&lt;set $numFirewood to $numFirewood + $tempFirewood&gt;&gt;
+&lt;&lt;if random(1, 100) &lt;= $investigatingIsland*$loreChance&gt;&gt;
+&lt;&lt;set $loreFound to true&gt;&gt;
+&lt;&lt;endif&gt;&gt;
 
-[[Survival]]</tw-passagedata></tw-storydata></div>
+/* Calculate people lost from tasks */
+&lt;&lt;if $searchingFood &lt;= 5&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $fiveSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - $searchingFood&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;elseif $searchingFood &lt;= 10&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $tenSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - 5&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $fifteenSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - 5&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+
+&lt;&lt;if $searchingWater &lt;= 5&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $fiveSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - $searchingWater&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;elseif $searchingWater &lt;= 10&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $tenSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - 5&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $fifteenSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - 5&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+
+&lt;&lt;if $searchingFirewood &lt;= 5&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $fiveSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - $searchingFirewood&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;elseif $searchingFirewood &lt;= 10&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $tenSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - 5&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if random(1, 100) &gt; $fifteenSurviveChance&gt;&gt;
+&lt;&lt;set $tempSurvivors to $numSurvivors - 5&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+
+/* Calculate people lost from insufficient resources */
+&lt;&lt;if $numFood &lt; $tempSurvivors&gt;&gt;
+&lt;&lt;set $numSurvivors to $numFood&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;if $numWater &lt; $tempSurvivors&gt;&gt;
+&lt;&lt;set $numSurvivors to $numWater&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;if $numFirewood &lt; $tempSurvivors&gt;&gt;
+&lt;&lt;set $numSurvivors to $numFirewood&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+
+&lt;&lt;/nobr&gt;&gt;
+/* Give player feedback on what happened */
+&lt;&lt;if $numSurvivors &gt;= $survivalTrigger&gt;&gt;
+/* Report */
+You do a headcount as people return to camp with what they&#x27;ve managed to forage. &lt;&lt;print $tempSurvivors&gt;&gt; people have returned to camp.
+&lt;&lt;if $numSurvivors &lt; $tempSurvivors&gt;&gt;
+Unfortunately, it looks like your group hasn&#x27;t managed to forage enough resources for everyone. It looks like only &lt;&lt;print $numSurvivors&gt;&gt; people will make it through the night.
+&lt;&lt;endif&gt;&gt;
+/* If lore found */
+&lt;&lt;if $loreFound&gt;&gt;
+One of the survivors found tattered pages out of a book and brought it back hoping there might be useful information on it.
+
+[[Examine the pages|Survival Lore Found]]
+/* If Jacob event triggered */
+&lt;&lt;elseif not ($campLocation is &quot;jacob&quot;) and random(1, 100) &lt;= $jacobReencounterChance&gt;&gt;
+&lt;&lt;if $Jacob&gt;&gt;
+/* OPTIONAL */
+Jacob returns to camp escorting one of the survivors and reiterates his offer of help.
+
+[[Accept his offer|Trust Jacob]]
+[[Refuse his offer|Survival]]
+&lt;&lt;else&gt;&gt;
+A man in his late 20s, with dark brown eyes and clean cut hair enters the camp escorting one of the survivors and offers to provide what aid he can if your group sets up camp near his house.
+
+[[Accept his offer|Trust Jacob]]
+[[Refuse his offer|Survival]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;else&gt;&gt;
+[[Settle in for the night|Survival]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;elseif $campLocation is &quot;crash&quot;&gt;&gt;
+[[As people are returning...|End of Crash]]
+&lt;&lt;elseif $campLocation is &quot;grove&quot;&gt;&gt;
+[[As people are returning...|Grove Mode End]]
+&lt;&lt;else&gt;&gt;
+[[As people are returning...|Jacob Mode End]]
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="Map Screen" tags="" position="654,209">Put map here
+
+[[Back|previous()]]</tw-passagedata><tw-passagedata pid="47" name="Survival Lore Found" tags="" position="886,700">&lt;&lt;nobr&gt;&gt;
+/* OPTIONAL */
+&lt;&lt;set $loreFound to false&gt;&gt;
+/* Sorts out what lore the player has discovered */
+&lt;&lt;if $campLocation is &quot;crash&quot;&gt;&gt;
+&lt;&lt;if not $godsVDietiesLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|Gods V Dieties]]
+&lt;&lt;set $godsVDietiesLoreFound to true&gt;&gt;
+&lt;&lt;elseif not $testingDietyLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|Testing a Diety]]
+&lt;&lt;set $testingDietyLoreFound to true&gt;&gt;
+&lt;&lt;elseif not $groveGodLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|The Grove God]]
+&lt;&lt;set $groveGodLoreFound to true&gt;&gt;
+&lt;&lt;elseif not $islandLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|The Island]]
+&lt;&lt;set $islandLoreFound to true&gt;&gt;
+&lt;&lt;else&gt;&gt;
+The tattered pages are too ruined to read. You give up and [[turn in for the night.|Survival]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;elseif $campLocation is &quot;grove&quot;&gt;&gt;
+&lt;&lt;if not $godsVDietiesLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|Gods V Dieties]]
+&lt;&lt;set $godsVDietiesLoreFound to true&gt;&gt;
+&lt;&lt;elseif not $testingDietyLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|Testing a Diety]]
+&lt;&lt;set $testingDietyLoreFound to true&gt;&gt;
+&lt;&lt;elseif not $groveGodLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|The Grove God]]
+&lt;&lt;set $groveGodLoreFound to true&gt;&gt;
+&lt;&lt;else&gt;&gt;
+The tattered pages are too ruined to read. You give up and [[turn in for the night.|Survival]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if not $godsVDietiesLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|Gods V Dieties]]
+&lt;&lt;set $godsVDietiesLoreFound to true&gt;&gt;
+&lt;&lt;elseif not $testingDietyLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|Testing a Diety]]
+&lt;&lt;set $testingDietyLoreFound to true&gt;&gt;
+&lt;&lt;elseif not $cullingsLoreFound&gt;&gt;
+Some of the pages are still legible. You [[read as much as you can.|Cullings]]
+&lt;&lt;set $cullingsLoreFound to true&gt;&gt;
+&lt;&lt;else&gt;&gt;
+The tattered pages are too ruined to read. You give up and [[turn in for the night.|Survival]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata></tw-storydata></div>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
 	if(document.documentElement.getAttribute("data-init")==="loading"){!function(window,document,jQuery,undefined){"use strict";function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}var _createClass=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),_slicedToArray=function(){function e(e,t){var r=[],n=!0,a=!1,i=undefined;try{for(var o,s=e[Symbol.iterator]();!(n=(o=s.next()).done)&&(r.push(o.value),!t||r.length!==t);n=!0);}catch(e){a=!0,i=e}finally{try{!n&&s.return&&s.return()}finally{if(a)throw i}}return r}return function(t,r){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,r);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Alert=function(){function e(e,t,r,n){var a="fatal"===e,i="Apologies! "+(a?"A fatal":"An")+" error has occurred.";i+=a?" Aborting.":" You may be able to continue, but some parts may not work properly.",null==t&&null==r||(i+="\n\nError",null!=t&&(i+=" ["+t+"]"),i+=null!=r?": "+r.replace(/^(?:(?:uncaught\s+(?:exception:\s+)?)?error:\s+)+/i,"")+".":": unknown error."),n&&n.stack&&(i+="\n\nStack Trace:\n"+n.stack),window.alert(i)}function t(t,r,n){e(null,t,r,n)}function r(t,r,n){e("fatal",t,r,n)}return function(e){window.onerror=function(n,a,i,o,s){"complete"===document.readyState?t(null,n,s):(r(null,n,s),window.onerror=e,"function"==typeof window.onerror&&window.onerror.apply(this,arguments))}}(window.onerror),Object.freeze(Object.defineProperties({},{error:{value:t},fatal:{value:r}}))}();!function(){function e(e,t){var a=String(e);switch(t){case"start":return a&&r.test(a)?a.replace(r,""):a;case"end":return a&&n.test(a)?a.replace(n,""):a;default:throw new Error('_trimFrom called with incorrect where parameter value: "'+t+'"')}}function t(e,t){var r=Number.parseInt(e,10)||0;if(r<1)return"";var n="undefined"==typeof t?"":String(t);for(""===n&&(n=" ");n.length<r;){var a=n.length,i=r-a;n+=a>i?n.slice(0,i):n}return n.length>r&&(n=n.slice(0,r)),n}var r=/^[\s\u00A0\uFEFF][\s\u00A0\uFEFF]*/,n=/[\s\u00A0\uFEFF][\s\u00A0\uFEFF]*$/;Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includes called on null or undefined");if(0===arguments.length)return!1;var e=this.length>>>0;if(0===e)return!1;var t=arguments[0],r=Number(arguments[1])||0;for(r<0&&(r=Math.max(0,e+r));r<e;++r){var n=this[r];if(t===n||t!==t&&n!==n)return!0}return!1}}),String.prototype.padStart||Object.defineProperty(String.prototype,"padStart",{configurable:!0,writable:!0,value:function(e,r){if(null==this)throw new TypeError("String.prototype.padStart called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(e,10);return i<=a?n:t(i-a,r)+n}}),String.prototype.padEnd||Object.defineProperty(String.prototype,"padEnd",{configurable:!0,writable:!0,value:function(e,r){if(null==this)throw new TypeError("String.prototype.padEnd called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(e,10);return i<=a?n:n+t(i-a,r)}}),String.prototype.trimStart||Object.defineProperty(String.prototype,"trimStart",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimStart called on null or undefined");return e(this,"start")}}),String.prototype.trimLeft||Object.defineProperty(String.prototype,"trimLeft",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimLeft called on null or undefined");return e(this,"start")}}),String.prototype.trimEnd||Object.defineProperty(String.prototype,"trimEnd",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimEnd called on null or undefined");return e(this,"end")}}),String.prototype.trimRight||Object.defineProperty(String.prototype,"trimRight",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimRight called on null or undefined");return e(this,"end")}})}(),function(){function _random(){if(0===arguments.length)throw new Error("_random called with insufficient parameters");var e=void 0,t=void 0;if(1===arguments.length?(e=0,t=arguments[0]):(e=arguments[0],t=arguments[1]),e>t){var r=[t,e];e=r[0],t=r[1]}return Math.floor(_nativeMathRandom()*(t-e+1))+e}function _getCodePointStartAndEnd(e,t){var r=e.charCodeAt(t);if(Number.isNaN(r))return{char:"",start:-1,end:-1};if(r<55296||r>57343)return{char:e.charAt(t),start:t,end:t};if(r>=55296&&r<=56319){var n=t+1;if(n>=e.length)throw new Error("high surrogate without trailing low surrogate");var a=e.charCodeAt(n);if(a<56320||a>57343)throw new Error("high surrogate without trailing low surrogate");return{char:e.charAt(t)+e.charAt(n),start:t,end:n}}if(0===t)throw new Error("low surrogate without leading high surrogate");var i=t-1,o=e.charCodeAt(i);if(o<55296||o>56319)throw new Error("low surrogate without leading high surrogate");return{char:e.charAt(i)+e.charAt(t),start:i,end:t}}var _nativeMathRandom=Math.random;Object.defineProperty(Array,"random",{configurable:!0,writable:!0,value:function(e,t,r){var n=t,a=r;return 2===arguments.length&&(a=n,n=0),Array.isArray(e)?e.random(n,a):e.hasOwnProperty("length")?[].concat(_toConsumableArray(e)).random(n,a):void 0}}),Object.defineProperty(Array.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.count called on null or undefined");for(var e=Array.prototype.indexOf,t=arguments[0],r=Number(arguments[1])||0,n=0;(r=e.call(this,t,r))!==-1;)++n,++r;return n}}),Object.defineProperty(Array.prototype,"delete",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.delete called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.indexOf,r=Array.prototype.push,n=Array.prototype.splice,a=Array.prototype.concat.apply([],arguments),i=[],o=0,s=a.length;o<s;++o)for(var u=a[o],l=0;(l=t.call(this,u,l))!==-1;)r.apply(i,n.call(this,l,1));return i}}),Object.defineProperty(Array.prototype,"deleteAt",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.deleteAt called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.splice,r=[].concat(_toConsumableArray(new Set(Array.prototype.concat.apply([],arguments).map(function(t){return t<0?Math.max(0,e+t):t})).values())),n=[].concat(_toConsumableArray(r)).sort(function(e,t){return t-e}),a=[],i=0,o=r.length;i<o;++i)a[i]=this[r[i]];for(var s=0,u=n.length;s<u;++s)t.call(this,n[s],1);return a}}),Object.defineProperty(Array.prototype,"flatten",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatten called on null or undefined");return Array.prototype.reduce.call(this,function(e,t){return e.concat(Array.isArray(t)?t.flatten():t)},[])}}),Object.defineProperty(Array.prototype,"includesAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAll called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAll.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(!Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!1;return!0}}),Object.defineProperty(Array.prototype,"includesAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAny called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAny.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!0;return!1}}),Object.defineProperty(Array.prototype,"pluck",{configurable:!0,writable:!0,value:function(e,t){if(null==this)throw new TypeError("Array.prototype.pluck called on null or undefined");var r=this.length>>>0;if(0!==r){var n=e,a=t;return 1===arguments.length&&(a=n,n=0),null==n?n=0:n<0?(n=r+n,n<0&&(n=0)):n>=r&&(n=r-1),null==a?a=r-1:a<0?(a=r+a,a<0&&(a=r-1)):a>=r&&(a=r-1),Array.prototype.splice.call(this,_random(n,a),1)[0]}}}),Object.defineProperty(Array.prototype,"random",{configurable:!0,writable:!0,value:function(e,t){if(null==this)throw new TypeError("Array.prototype.random called on null or undefined");var r=this.length>>>0;if(0!==r){var n=e,a=t;return 1===arguments.length&&(a=n,n=0),null==n?n=0:n<0?(n=r+n,n<0&&(n=0)):n>=r&&(n=r-1),null==a?a=r-1:a<0?(a=r+a,a<0&&(a=r-1)):a>=r&&(a=r-1),this[_random(n,a)]}}}),Object.defineProperty(Array.prototype,"shuffle",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.shuffle called on null or undefined");var e=this.length>>>0;if(0!==e){for(var t=e-1;t>0;--t){var r=Math.floor(_nativeMathRandom()*(t+1)),n=[this[r],this[t]];this[t]=n[0],this[r]=n[1]}return this}}}),Object.defineProperty(Function.prototype,"partial",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Function.prototype.partial called on null or undefined");var e=Array.prototype.slice,t=this,r=e.call(arguments,0);return function(){for(var n=[],a=0,i=0;i<r.length;++i)n.push(r[i]===undefined?arguments[a++]:r[i]);return t.apply(this,n.concat(e.call(arguments,a)))}}}),Object.defineProperty(Math,"clamp",{configurable:!0,writable:!0,value:function e(t,r,n){var e=Number(t);return Number.isNaN(e)?NaN:e.clamp(r,n)}}),Object.defineProperty(Math,"easeInOut",{configurable:!0,writable:!0,value:function(e){return 1-(Math.cos(Number(e)*Math.PI)+1)/2}}),Object.defineProperty(Number.prototype,"clamp",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Number.prototype.clamp called on null or undefined");if(2!==arguments.length)throw new Error("Number.prototype.clamp called with an incorrect number of parameters");var e=Number(arguments[0]),t=Number(arguments[1]);if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.min(Math.max(this,e),t)}}),RegExp.escape||!function(){var e=/[\\^$*+?.()|[\]{}]/g,t=new RegExp(e.source);Object.defineProperty(RegExp,"escape",{configurable:!0,writable:!0,value:function(r){var n=String(r);return n&&t.test(n)?n.replace(e,"\\$&"):n}})}(),function(){var e=/{(\d+)(?:,([+-]?\d+))?}/g,t=new RegExp(e.source);Object.defineProperty(String,"format",{configurable:!0,writable:!0,value:function(r){function n(e,t,r){if(!t)return e;var n=Math.abs(t)-e.length;if(n<1)return e;var a=String(r).repeat(n);return t<0?e+a:a+e}if(arguments.length<2)return 0===arguments.length?"":r;var a=2===arguments.length&&Array.isArray(arguments[1])?[].concat(_toConsumableArray(arguments[1])):Array.prototype.slice.call(arguments,1);return 0===a.length?r:t.test(r)?(e.lastIndex=0,r.replace(e,function(e,t,r){var i=a[t];if(null==i)return"";for(;"function"==typeof i;)i=i();switch("undefined"==typeof i?"undefined":_typeof(i)){case"string":break;case"object":i=JSON.stringify(i);break;default:i=String(i)}return n(i,r?Number.parseInt(r,10):0," ")})):r}})}(),Object.defineProperty(String.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.contains called on null or undefined");return String.prototype.indexOf.apply(this,arguments)!==-1}}),Object.defineProperty(String.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.count called on null or undefined");var e=String(arguments[0]||"");if(""===e)return 0;for(var t=String.prototype.indexOf,r=e.length,n=Number(arguments[1])||0,a=0;(n=t.call(this,e,n))!==-1;)++a,n+=r;return a}}),Object.defineProperty(String.prototype,"splice",{configurable:!0,writable:!0,value:function(e,t,r){if(null==this)throw new TypeError("String.prototype.splice called on null or undefined");var n=this.length>>>0;if(0===n)return"";var a=Number(e);Number.isSafeInteger(a)?a<0&&(a+=n,a<0&&(a=0)):a=0,a>n&&(a=n);var i=Number(t);(!Number.isSafeInteger(i)||i<0)&&(i=0);var o=this.slice(0,a);return"undefined"!=typeof r&&(o+=r),a+i<n&&(o+=this.slice(a+i)),o}}),Object.defineProperty(String.prototype,"splitOrEmpty",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.splitOrEmpty called on null or undefined");return""===String(this)?[]:String.prototype.split.apply(this,arguments)}}),Object.defineProperty(String.prototype,"toLocaleUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toLocaleUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return n===-1?"":r.toLocaleUpperCase()+e.slice(n+1)}}),Object.defineProperty(String.prototype,"toUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return n===-1?"":r.toUpperCase()+e.slice(n+1)}}),Object.defineProperty(Date.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:date)",this.toISOString()]}}),Object.defineProperty(Function.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)","("+this.toString()+")"]}}),Object.defineProperty(Map.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:map)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(RegExp.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)",this.toString()]}}),Object.defineProperty(Set.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:set)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(JSON,"reviveWrapper",{configurable:!0,writable:!0,value:function(e,t){if("string"!=typeof e)throw new TypeError("JSON.reviveWrapper code parameter must be a string");return["(revive:eval)",[e,t]]}}),Object.defineProperty(JSON,"_real_parse",{value:JSON.parse}),Object.defineProperty(JSON,"parse",{configurable:!0,writable:!0,value:function value(text,reviver){return JSON._real_parse(text,function(key,val){var value=val;if(Array.isArray(value)&&2===value.length)switch(value[0]){case"(revive:set)":value=new Set(value[1]);break;case"(revive:map)":value=new Map(value[1]);break;case"(revive:date)":value=new Date(value[1]);break;case"(revive:eval)":try{if(Array.isArray(value[1])){var $ReviveData$=value[1][1];value=eval(value[1][0])}else value=eval(value[1])}catch(e){}}else if("string"==typeof value&&"@@revive@@"===value.slice(0,10))try{value=eval(value.slice(10))}catch(e){}if("function"==typeof reviver)try{value=reviver(key,value)}catch(e){}return value})}}),Object.defineProperty(Array.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.contains called on null or undefined");return Array.prototype.includes.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAll called on null or undefined");return Array.prototype.includesAll.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAny called on null or undefined");return Array.prototype.includesAny.apply(this,arguments)}}),Object.defineProperty(String.prototype,"readBracketedList",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.readBracketedList called on null or undefined");for(var e=new RegExp("(?:\\[\\[((?:\\s|\\S)*?)\\]\\])|([^\"'\\s]\\S*)","gm"),t=[],r=void 0;null!==(r=e.exec(this));)r[1]?t.push(r[1]):r[2]&&t.push(r[2]);return t}})}();var Browser=function(){var e={userAgent:navigator.userAgent.toLowerCase()};return e.isGecko=navigator&&"Gecko"===navigator.product&&!/webkit|trident/.test(e.userAgent),e.isIE=/msie|trident/.test(e.userAgent)&&!e.userAgent.includes("opera"),e.ieVersion=function(){var t=/(?:msie\s+|rv:)(\d{1,2}\.\d)/.exec(e.userAgent);return t?Number([1]):0}(),e.isOpera=e.userAgent.includes("opera")||e.userAgent.includes(" opr/"),e.operaVersion=function(){var t=new RegExp((/applewebkit|chrome/.test(e.userAgent)?"opr":"version")+"\\/(\\d{1,2}\\.\\d+)"),r=t.exec(e.userAgent);return r?Number(r[1]):0}(),e.isMobile=Object.freeze({Android:/android/.test(e.userAgent),BlackBerry:/blackberry/.test(e.userAgent),iOS:/ip(?:hone|ad|od)/.test(e.userAgent),Windows:/iemobile/.test(e.userAgent),any:function(){var t=e.isMobile;return t.Android||t.BlackBerry||t.iOS||t.Windows}}),Object.freeze(e)}(),Has=function(){function e(e){try{if(null!=e&&e.length>=0){var t="SugarCube.WebStorage.Test",r="1701 Guilty Scott";if(e.setItem(t,r),e.getItem(t)===r)return e.removeItem(t),!0}}catch(e){}return!1}return Object.freeze({audio:"function"==typeof document.createElement("audio").canPlayType,fileAPI:"File"in window&&"FileList"in window&&"FileReader"in window&&!Browser.isMobile.any()&&(!Browser.isOpera||Browser.operaVersion>=15),geolocation:"geolocation"in navigator&&"function"==typeof navigator.geolocation.getCurrentPosition&&"function"==typeof navigator.geolocation.watchPosition,localStorage:"localStorage"in window&&e(window.localStorage),sessionStorage:"sessionStorage"in window&&e(window.sessionStorage)})}(),_ref4=function(){function e(t){if("object"!==("undefined"==typeof t?"undefined":_typeof(t))||null==t)return t;if("function"==typeof t.clone)return t.clone(!0);if(t.nodeType&&"function"==typeof t.cloneNode)return t.cloneNode(!0);var r=void 0;return Array.isArray(t)?r=[]:t instanceof Date?r=new Date(t.getTime()):t instanceof Map?(r=new Map,t.forEach(function(t,n){r.set(n,e(t))})):t instanceof RegExp?r=new RegExp(t):t instanceof Set?(r=new Set,t.forEach(function(t){r.add(e(t))})):r=Object.create(Object.getPrototypeOf(t)),Object.keys(t).forEach(function(n){return r[n]=e(t[n])}),r}function t(e){for(var t=document.createDocumentFragment(),r=document.createElement("p"),n=void 0;null!==(n=e.firstChild);){if(n.nodeType===Node.ELEMENT_NODE){var a=n.nodeName.toUpperCase();switch(a){case"BR":if(null!==n.nextSibling&&n.nextSibling.nodeType===Node.ELEMENT_NODE&&"BR"===n.nextSibling.nodeName.toUpperCase()){e.removeChild(n.nextSibling),e.removeChild(n),t.appendChild(r),r=document.createElement("p");continue}if(!r.hasChildNodes()){e.removeChild(n);continue}break;case"ADDRESS":case"ARTICLE":case"ASIDE":case"BLOCKQUOTE":case"CENTER":case"DIV":case"DL":case"FIGURE":case"FOOTER":case"FORM":case"H1":case"H2":case"H3":case"H4":case"H5":case"H6":case"HEADER":case"HR":case"MAIN":case"NAV":case"OL":case"P":case"PRE":case"SECTION":case"TABLE":case"UL":r.hasChildNodes()&&(t.appendChild(r),r=document.createElement("p")),t.appendChild(n);continue}}r.appendChild(n)}r.hasChildNodes()&&t.appendChild(r),e.appendChild(t)}function r(){try{return document.activeElement||null}catch(e){return null}}function n(e,t,r){var n="object"===("undefined"==typeof e?"undefined":_typeof(e))?e:document.getElementById(e);if(null==n)return null;var a=Array.isArray(t)?t:[t];jQuery(n).empty();for(var i=0,o=a.length;i<o;++i)if(Story.has(a[i]))return new Wikifier(n,Story.get(a[i]).processText().trim()),n;if(null!=r){var s=String(r).trim();""!==s&&new Wikifier(n,s)}return n}function a(e,t,r){return jQuery(document.createElement("span")).addClass("error").attr("title",r).text(L10n.get("errorTitle")+": "+(t||"unknown error")).appendTo(e),!1}function i(e,t){switch("undefined"==typeof e?"undefined":_typeof(e)){case"number":if(Number.isNaN(e))return t;break;case"object":if(null===e)return t;if(Array.isArray(e)||e instanceof Set)return[].concat(_toConsumableArray(e)).map(function(e){return i(e,t)}).join(", ");if(e instanceof Map){var r=function(){var r=i,n=[].concat(_toConsumableArray(e)).map(function(e){return r(e[0],t)+" ⇒ "+r(e[1],t)}).join("; ");return{v:"( "+n+" )"}}();if("object"===("undefined"==typeof r?"undefined":_typeof(r)))return r.v}else{if(e instanceof Date)return e.toLocaleString();if("function"==typeof e.toString)return e.toString()}return Object.prototype.toString.call(e);case"function":case"undefined":return t}return String(e)}return Object.freeze(Object.defineProperties({},{clone:{value:e},convertBreaks:{value:t},safeActiveElement:{value:r},setPageElement:{value:n},throwError:{value:a},toStringOrDefault:{value:i}}))}(),clone=_ref4.clone,convertBreaks=_ref4.convertBreaks,safeActiveElement=_ref4.safeActiveElement,setPageElement=_ref4.setPageElement,throwError=_ref4.throwError,toStringOrDefault=_ref4.toStringOrDefault;!function(){function e(e){13!==e.which&&32!==e.which||(e.preventDefault(),jQuery(safeActiveElement()||this).trigger("click"))}function t(e){return function(){var t=jQuery(this);t.is("[aria-pressed]")&&t.attr("aria-pressed","true"===t.attr("aria-pressed")?"false":"true"),e.apply(this,arguments)}}function r(e){return t(function(){jQuery(this).off(".aria-clickable").removeAttr("tabindex aria-controls aria-pressed").not("a,button").removeAttr("role").end().filter("button").prop("disabled",!0),e.apply(this,arguments)})}jQuery.fn.extend({ariaClick:function(n,a){if(0===this.length||0===arguments.length)return this;var i=n,o=a;return null==o&&(o=i,i=undefined),i=jQuery.extend({namespace:undefined,one:!1,selector:undefined,data:undefined,controls:undefined,pressed:undefined,label:undefined},i),"string"!=typeof i.namespace?i.namespace="":"."!==i.namespace[0]&&(i.namespace="."+i.namespace),"boolean"==typeof i.pressed&&(i.pressed=i.pressed?"true":"false"),this.filter("button").prop("type","button"),this.not("a,button").attr("role","button"),this.attr("tabindex",0),null!=i.controls&&this.attr("aria-controls",i.controls),null!=i.pressed&&this.attr("aria-pressed",i.pressed),null!=i.label&&this.attr({"aria-label":i.label,title:i.label}),this.not("button").on("keypress.aria-clickable"+i.namespace,i.selector,e),this.on("click.aria-clickable"+i.namespace,i.selector,i.data,i.one?r(o):t(o)),this}})}(),function(){jQuery.extend({wikiWithOptions:function(e){for(var t=arguments.length,r=Array(t>1?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];if(0!==r.length){var a=document.createDocumentFragment();r.forEach(function(t){return new Wikifier(a,t,e)});var i=[].concat(_toConsumableArray(a.querySelectorAll(".error"))).map(function(e){return e.textContent.replace(/^(?:(?:Uncaught\s+)?Error:\s+)+/,"")});if(i.length>0)throw new Error(i.join("; "))}},wiki:function(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];this.wikiWithOptions.apply(this,[undefined].concat(t))}}),jQuery.fn.extend({wikiWithOptions:function(e){for(var t=arguments.length,r=Array(t>1?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];if(0===this.length||0===r.length)return this;var a=document.createDocumentFragment();return r.forEach(function(t){return new Wikifier(a,t,e)}),this.append(a),this},wiki:function(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];return this.wikiWithOptions.apply(this,[undefined].concat(t))}})}();var Util=function(){function e(e){return Object.freeze(Object.assign(Object.create(null),e))}function t(e){var t=void 0;switch("undefined"==typeof e?"undefined":_typeof(e)){case"number":t=e;break;case"string":t=Number(e);break;default:return!1}return!Number.isNaN(t)&&Number.isFinite(t)}function r(e){return"boolean"==typeof e||"string"==typeof e&&("true"===e||"false"===e)}function n(e){return String(e).trim().replace(/[^\w\s\u2013\u2014-]+/g,"").replace(/[_\s\u2013\u2014-]+/g,"-").toLocaleLowerCase()}function a(e){if(null==e)return"";var t=String(e);return t&&p.test(t)?t.replace(f,function(e){return h[e]}):t}function i(e){if(null==e)return"";var t=String(e);return t&&m.test(t)?t.replace(g,function(e){return v[e]}):t}function o(e){var t=/^([+-]?(?:\d*\.)?\d+)([Mm]?[Ss])$/,r=t.exec(String(e));if(null===r)throw new SyntaxError('invalid time value syntax: "'+e+'"');var n=Number(r[1]);if(/^[Ss]$/.test(r[2])&&(n*=1e3),Number.isNaN(n)||!Number.isFinite(n))throw new RangeError('invalid time value: "'+e+'"');return n}function s(e){if("number"!=typeof e||Number.isNaN(e)||!Number.isFinite(e)){var t=void 0;switch("undefined"==typeof e?"undefined":_typeof(e)){case"string":t='"'+e+'"';break;case"number":t=String(e);break;default:t=Object.prototype.toString.call(e)}throw new Error("invalid milliseconds: "+t)}return e+"ms"}function u(e){if(!e.includes("-"))switch(e){case"bgcolor":return"backgroundColor";case"float":return"cssFloat";default:return e}var t="-ms-"===e.slice(0,4)?e.slice(1):e;return t.split("-").map(function(e,t){return 0===t?e:e.toUpperFirst()}).join("")}function l(e){var t=document.createElement("a"),r=Object.create(null);t.href=e,t.search&&t.search.replace(/^\?/,"").splitOrEmpty(/(?:&(?:amp;)?|;)/).forEach(function(e){var t=e.split("="),n=_slicedToArray(t,2),a=n[0],i=n[1];r[a]=i});var n=t.host&&"/"!==t.pathname[0]?"/"+t.pathname:t.pathname;return{href:t.href,protocol:t.protocol,host:t.host,hostname:t.hostname,port:t.port,path:""+n+t.search,pathname:n,query:t.search,search:t.search,queries:r,searches:r,hash:t.hash}}function c(e,t){for(var r=Object.prototype.toString,n=Array.isArray(e),a=[].concat(Object.keys(e),Object.keys(t)).sort().filter(function(e,t,r){return 0===t||r[t-1]!==e}),i={},o=void 0,s=function(e){return e===o},u=0,l=a.length;u<l;++u){var c=a[u],d=e[c],f=t[c];if(e.hasOwnProperty(c))if(t.hasOwnProperty(c)){if(d===f)continue;if(("undefined"==typeof d?"undefined":_typeof(d))===("undefined"==typeof f?"undefined":_typeof(f)))if("function"==typeof d)d.toString()!==f.toString()&&(i[c]=[y.Copy,f]);else if("object"!==("undefined"==typeof d?"undefined":_typeof(d))||null===d)i[c]=[y.Copy,f];else{var p=r.call(d),h=r.call(f);if(p===h)if("[object Date]"===p){var g=Number(f);Number(d)!==g&&(i[c]=[y.CopyDate,g])}else if("[object RegExp]"===p)d.toString()!==f.toString()&&(i[c]=[y.Copy,clone(f)]);else{var m=Util.diff(d,f);null!==m&&(i[c]=m)}else i[c]=[y.Copy,clone(f)]}else i[c]=[y.Copy,"object"!==("undefined"==typeof f?"undefined":_typeof(f))||null===f?f:clone(f)]}else if(n&&Util.isNumeric(c)){var v=Number(c);if(!o){o="";do o+="~";while(a.some(s));i[o]=[y.SpliceArray,v,v]}v<i[o][1]&&(i[o][1]=v),v>i[o][2]&&(i[o][2]=v)}else i[c]=y.Delete;else i[c]=[y.Copy,"object"!==("undefined"==typeof f?"undefined":_typeof(f))||null===f?f:clone(f)]}return Object.keys(i).length>0?i:null}function d(e,t){for(var r=Object.keys(t||{}),n=clone(e),a=0,i=r.length;a<i;++a){var o=r[a],s=t[o];if(s===y.Delete)delete n[o];else if(Array.isArray(s))switch(s[0]){case y.SpliceArray:n.splice(s[1],1+(s[2]-s[1]));break;case y.Copy:n[o]=clone(s[1]);break;case y.CopyDate:n[o]=new Date(s[1])}else n[o]=Util.patch(n[o],s)}return n}var f=/[&<>"'`]/g,p=new RegExp(f.source),h=Object.freeze({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;","`":"&#96;"}),g=/&(?:amp|lt|gt|quot|apos|#39|#x27|#96|#x60);/g,m=new RegExp(g.source),v=Object.freeze({"&amp;":"&","&lt;":"<","&gt;":">","&quot;":'"',"&apos;":"'","&#39;":"'","&#x27;":"'","&#96;":"`","&#x60;":"`"}),y=e({Delete:0,SpliceArray:1,Copy:2,CopyDate:3});return Object.freeze(Object.defineProperties({},{toEnum:{value:e},isNumeric:{value:t},isBoolean:{value:r},slugify:{value:n},escape:{value:a},unescape:{value:i},fromCssTime:{value:o},toCssTime:{value:s},fromCssProperty:{value:u},parseUrl:{value:l},DiffOp:{value:y},diff:{value:c},patch:{value:d},random:{value:Math.random},entityEncode:{value:a},entityDecode:{value:i},evalExpression:{value:function(){return Scripting.evalJavaScript.apply(Scripting,arguments)}},evalStatements:{value:function(){return Scripting.evalJavaScript.apply(Scripting,arguments)}}}))}(),SimpleAudio=function(){function e(){return g}function t(e){g=!!e,l("mute",g)}function r(){return p}function n(e){p=Math.clamp(e,.2,5),l("rate",p)}function a(){return h}function i(e){h=Math.clamp(e,0,1),l("volume",h)}function o(){l("stop")}function s(e,t){if("function"!=typeof t)throw new Error("callback parameter must be a function");f.set(e,t)}function u(e){f.delete(e)}function l(e,t){f.forEach(function(r){return r(e,t)})}function c(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];return new(Function.prototype.bind.apply(m,[null].concat(t)))}function d(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];return new(Function.prototype.bind.apply(v,[null].concat(t)))}var f=new Map,p=1,h=1,g=!1,m=function(){function e(t){if(_classCallCheck(this,e),Array.isArray(t))this._create(t);else{if(!(t instanceof e))throw new Error("sources parameter must be an array of either URLs or source objects");this._copy(t)}}return _createClass(e,[{key:"_create",value:function(t){if(!Array.isArray(t)||0===t.length)throw new Error("sources parameter must be an array of either URLs or source objects");var r=/^data:\s*audio\/([^;,]+)\s*[;,]/i,n=/\.([^.\/\\]+)$/,a=e.getType,i=[],o=document.createElement("audio");if(t.forEach(function(e){var t=null;switch("undefined"==typeof e?"undefined":_typeof(e)){case"string":var s=void 0;if("data:"===e.slice(0,5)){if(s=r.exec(e),null===s)throw new Error("source data URI missing media type")}else if(s=n.exec(Util.parseUrl(e).pathname),null===s)throw new Error("source URL missing file extension");var u=a(s[1]);null!==u&&(t={src:e,type:u});break;case"object":if(null===e)throw new Error("source object cannot be null");if(!e.hasOwnProperty("src"))throw new Error('source object missing required "src" property');if(!e.hasOwnProperty("format"))throw new Error('source object missing required "format" property');var l=a(e.format);null!==l&&(t={src:e.src,type:l});break;default:throw new Error("invalid source value (type: "+("undefined"==typeof e?"undefined":_typeof(e))+")")}if(null!==t){var c=document.createElement("source");c.src=t.src,c.type=t.type,o.appendChild(c),i.push(t)}}),!o.hasChildNodes())if(Browser.isIE)o.src=undefined;else{var s=document.createElement("source");s.src=undefined,s.type=undefined,o.appendChild(s)}this._finalize(o,i,clone(t))}},{key:"_copy",value:function(t){if(!(t instanceof e))throw new Error("original parameter must be an instance of AudioWrapper");this._finalize(t.audio.cloneNode(!0),clone(t.sources),clone(t.originalSources))}},{key:"_finalize",value:function(e,t,r){var n=this;Object.defineProperties(this,{audio:{configurable:!0,value:e},sources:{configurable:!0,value:Object.freeze(t)},originalSources:{configurable:!0,value:Object.freeze(r)},_error:{writable:!0,value:!1},_faderId:{writable:!0,value:null},_mute:{writable:!0,value:!1},_rate:{writable:!0,value:1},_volume:{writable:!0,value:1}}),jQuery(this.audio).on("loadstart",function(){return n._error=!1}).on("error",function(){return n._error=!0}).find("source:last-of-type").on("error",function(){return n._trigger("error")}),SimpleAudio.subscribe(this,function(e){if(!n.audio)return void SimpleAudio.unsubscribe(n);switch(e){case"mute":n._updateAudioMute();break;case"rate":n._updateAudioRate();break;case"stop":n.stop();break;case"volume":n._updateAudioVolume()}}),this.load()}},{key:"_trigger",value:function(e){jQuery(this.audio).triggerHandler(e)}},{key:"clone",value:function(){return new e(this)}},{key:"destroy",value:function(){SimpleAudio.unsubscribe(this),this.fadeStop(),this.stop();
